@@ -26,10 +26,12 @@ function NodeDetails(props) {
                 setNodeDetails(nodeDetails);
             }
             getDetails();
+            console.log("Mounting..");
         } catch(e) {
             alert(e);
         }
-    }, [setNodeDetails]);
+    // eslint-disable-next-line
+    },[]);
     /*useEffect(() => {
         try {    
             async function getDetails() { 
@@ -56,7 +58,7 @@ function NodeDetails(props) {
          name: "CmMac",
          label: "Modem MAC ID",
          options: {
-          filter: true,
+         filter: true,
           sort: false,
          }
         },
