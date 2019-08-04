@@ -29,7 +29,7 @@ function NodeDetails(props) {
         } catch(e) {
             alert(e);
         }
-    }, []);
+    }, [setNodeDetails]);
     /*useEffect(() => {
         try {    
             async function getDetails() { 
