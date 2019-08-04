@@ -26,11 +26,9 @@ function NodeDetails(props) {
                 setNodeDetails(nodeDetails);
             }
             getDetails();
-            console.log("Mounting..");
         } catch(e) {
             alert(e);
         }
-    // eslint-disable-next-line
     },[]);
     /*useEffect(() => {
         try {    

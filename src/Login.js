@@ -29,7 +29,7 @@ function Login(props) {
         event.preventDefault();
         try {
             await Auth.signIn(email,password);
-            toggleAuthenticated();
+            toggleAuthenticated(true);
             props.history.push("/nodedetails")
             
         } catch(e) {
