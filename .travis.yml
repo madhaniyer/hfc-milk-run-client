@@ -34,5 +34,5 @@ after_deploy:
   # Allow `awscli` to make requests to CloudFront.
   - aws configure set preview.cloudfront true
   # Invalidate every object in the targeted distribution.
-  - aws cloudfront create-invalidation --distribution-id E2FDJBF3D0J4OC --paths "/*"
+  - aws cloudfront create-invalidation --distribution-id E1RP90U9XU2O90 --paths "/*"
 
