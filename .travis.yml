@@ -10,6 +10,7 @@ install:
   pip install --user awscli
 script:
   - npm install
+  - unset CI 
   - npm run build
 deploy:
   # Control deployment by setting a value for `on`. Setting the `branch`
