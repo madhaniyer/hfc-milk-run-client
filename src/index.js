@@ -4,8 +4,9 @@ import { BrowserRouter } from "react-router-dom";
 import './index.css';
 import Amplify from "aws-amplify";
 import config from "./config";
-
-
+import PageContent from './PageContent';
+import { ThemeProvider } from './contexts/ThemeContext';
+import { LoginProvider } from './contexts/LoginContext';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
@@ -30,7 +31,13 @@ Amplify.configure({
   
 ReactDOM.render(
     <BrowserRouter>
-          <App />
+      <LoginProvider>
+        <ThemeProvider>
+          <PageContent>
+            <App />
+          </PageContent>
+        </ThemeProvider>
+      </LoginProvider>
     </BrowserRouter>,
  document.getElementById('root'));
 

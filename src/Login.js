@@ -1,4 +1,4 @@
-import React,{useContext,useState} from 'react'
+import React,{useContext,useState,useEffect} from 'react'
 import { withRouter} from "react-router-dom";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
@@ -19,11 +19,32 @@ import { Auth } from "aws-amplify";
 
 function Login(props) {
 
-    const {toggleAuthenticated} = useContext(LoginContext);
+    const {isAuthenticated,toggleAuthenticated,toggleAuthenticating} = useContext(LoginContext);
     const {classes} = props;
 
     const [email,setEmail]=useState("");
     const [password,setPassword]=useState("");
+
+    useEffect( () => {
+        async function performAuth() {
+          try {
+            toggleAuthenticating(true);
+            toggleAuthenticated(false);
+            await Auth.currentSession();
+            console.log("Current session:Auth " +isAuthenticated )
+            props.history.push("/nodedetails")
+            toggleAuthenticated(true);
+            toggleAuthenticating(false);
+          } catch(e) {
+            if (e !== 'No current user') {
+              alert("Please sign in again.");
+              toggleAuthenticating(false);
+            }
+          }
+          
+        }
+        performAuth();
+      },[]);
 
     const handleSubmit = async event => {
         event.preventDefault();

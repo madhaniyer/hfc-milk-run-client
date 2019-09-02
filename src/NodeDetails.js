@@ -8,6 +8,7 @@ import { ThemeProvider } from './contexts/ThemeContext';
 import { LoginProvider } from './contexts/LoginContext';
 import { NodeDetailsProvider } from './contexts/NodeDetailsContext';
 //import { NodeDetailsContext } from './contexts/NodeDetailsContext';
+import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 import { withRouter} from "react-router-dom";
 
 function NodeDetails(props) {
@@ -30,6 +31,7 @@ function NodeDetails(props) {
             alert(e);
         }
     },[]);
+    
     /*useEffect(() => {
         try {    
             async function getDetails() { 
@@ -99,19 +101,34 @@ function NodeDetails(props) {
          filterType: 'checkbox'
        };
 
+       const handleTableInit = (action, tableState) => {
+        console.log('handleTableInit: Fired ', tableState);
+       };
+
+       const getMuiTheme = () => createMuiTheme({
+        overrides: {
+            MUIDataTableBodyCell: {
+              root: {
+                backgroundColor: "#f7f5ed"
+              }
+            }
+          }
+      });
+
     return (
         <div>
             <LoginProvider>
                 <ThemeProvider>
                     <NodeDetailsProvider>
                         <PageContent>
-                            <Navbar />
-                                <MUIDataTable
+                            <MuiThemeProvider theme={getMuiTheme()}>
+                                <MUIDataTable 
                                     title={"Node List"}
                                     data={nodes}
                                     columns={columns}
                                     options={options}
                                 /> 
+                            </MuiThemeProvider>
                         </PageContent>
                     </NodeDetailsProvider>
                 </ThemeProvider>
